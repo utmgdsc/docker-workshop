@@ -1,0 +1,40 @@
+version: '3'
+services:
+  postgres:
+    build:
+      context: ./database
+      dockerfile: Dockerfile.db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: npm start
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/app/
+    links:
+      - postgres
+    depends_on: 
+      - postgres
+    environment:
+      PGUSER: postgres
+      PGHOST: postgres
+      PGDATABASE: postgres
+      PGPASSWORD: password
+      PGPORT: 5432
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app/
