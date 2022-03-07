@@ -1,40 +1,67 @@
 version: '3'
 services:
   postgres:
-    build:
-      context: ./database
-      dockerfile: Dockerfile.db
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
+    build: #Path to the dockerfile
+    - <blank>
+    ports: #We want to expose port 5432 from our container to the same port on our computer
+      - <blank>
+    environment: #credentials to database tables
+      - <blank>
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    build: #Path to the dockerfile
     command: npm start
-    ports:
-      - 3001:3001
+    ports: #We want to expose port 3001 from our container to the same port on our computer
+      - <blank>
     volumes:
       - ./backend:/app/
     links:
       - postgres
     depends_on: 
       - postgres
-    environment:
-      PGUSER: postgres
-      PGHOST: postgres
-      PGDATABASE: postgres
-      PGPASSWORD: password
-      PGPORT: 5432
+    environment: #credentials to connect to the database
+      - <blank>
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    build: #path to the docker file
+    - <blank>
     command: npm start
-    ports:
-      - 3000:3000
+    ports: #We want to expose port 3000 from our container to the same port on our computer
+      - <blank>
     volumes:
       - ./frontend:/app/
+
+--------------------------------------------
+CODE SEGMENTS
+
+build:
+  context: ./backend
+  dockerfile: Dockerfile
+
+build:
+  context: ./frontend
+  dockerfile: Dockerfile
+
+build:
+  context: ./database
+  dockerfile: Dockerfile.db
+
+
+ports:
+  - 3001:3001
+ports:
+  - 5432:5432
+ports:
+  - 3000:3000
+
+
+environment:
+  PGUSER: postgres
+  PGHOST: postgres
+  PGDATABASE: postgres
+  PGPASSWORD: password
+  PGPORT: 5432
+
+environment:
+  POSTGRES_PASSWORD: password
+  POSTGRES_USER: postgres
+  POSTGRES_DB: postgres
+

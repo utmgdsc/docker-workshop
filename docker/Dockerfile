@@ -1,14 +1,19 @@
-FROM node
+#What base image should we use?
+FROM  <blank>
 
 WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
+#We want to copy over the package json to our imagine
+COPY <blank> <blank>
 
-RUN npm install
+#We want to install dependencies
+RUN <blank>
 
-EXPOSE 3000
+#We want to expose port 3000 to our computer
+EXPOSE <blank>
 
-COPY . .
+#Copy the rest of the code
+COPY <blank> <blank>
 
-CMD [ "npm", "start" ]
+#Run the server
+CMD [ <blank>, <blank> ]
