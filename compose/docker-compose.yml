@@ -40,4 +40,6 @@ services:
   #   3. we want requests on OUR port 3000 to go get mapped INTO the
   #     CONTAINER's port 3000 .
   #   4. Make sure your indentation matches the indentation of the other services!
+  #   5. You will need two volumes: ./frontend:/app/ and /app/node_modules
+
   # 🐳
