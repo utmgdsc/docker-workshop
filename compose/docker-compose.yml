@@ -1,67 +1,42 @@
 version: '3'
 services:
   postgres:
-    build: #Path to the dockerfile
-    - <blank>
-    ports: #We want to expose port 5432 from our container to the same port on our computer
-      - <blank>
-    environment: #credentials to database tables
-      - <blank>
+    build:
+      context: 🐳where can I find the docker file?🐳
+      dockerfile: 🐳What is the name of the docker file?🐳
+    ports:
+      - 5432:🐳what port should requests go to inside the container?🐳
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
   backend:
-    build: #Path to the dockerfile
-    command: npm start
-    ports: #We want to expose port 3001 from our container to the same port on our computer
-      - <blank>
+    build:
+      context: 🐳where can I find the docker file?🐳
+      dockerfile:  🐳What is the name of the docker file?🐳
+    ports:
+      - 🐳what port on your computer do you want to take requests on?🐳:3001
     volumes:
       - ./backend:/app/
+      - /app/node_modules
     links:
       - postgres
     depends_on: 
       - postgres
-    environment: #credentials to connect to the database
-      - <blank>
-  frontend:
-    build: #path to the docker file
-    - <blank>
-    command: npm start
-    ports: #We want to expose port 3000 from our container to the same port on our computer
-      - <blank>
-    volumes:
-      - ./frontend:/app/
+    environment:
+      PGUSER: postgres
+      PGHOST: postgres
+      PGDATABASE: postgres
+      PGPASSWORD: password
+      PGPORT: 5432
+  🐳
+  Create a service called "frontend" that is responsible for configs:
+  building and starting container running the react app.
 
---------------------------------------------
-CODE SEGMENTS
-
-build:
-  context: ./backend
-  dockerfile: Dockerfile
-
-build:
-  context: ./frontend
-  dockerfile: Dockerfile
-
-build:
-  context: ./database
-  dockerfile: Dockerfile.db
-
-
-ports:
-  - 3001:3001
-ports:
-  - 5432:5432
-ports:
-  - 3000:3000
-
-
-environment:
-  PGUSER: postgres
-  PGHOST: postgres
-  PGDATABASE: postgres
-  PGPASSWORD: password
-  PGPORT: 5432
-
-environment:
-  POSTGRES_PASSWORD: password
-  POSTGRES_USER: postgres
-  POSTGRES_DB: postgres
-
+  Hints:
+    1. look inside the frontend directory!
+    2. you can start a react app with the command: npm start
+    3. we want requests on OUR port 3000 to go get mapped INTO the
+      CONTAINER's port 3000 .
+    4. Make sure your indentation matches the indentation of the other services!
+  🐳
