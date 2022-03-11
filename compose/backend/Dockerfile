@@ -1,9 +1,8 @@
-FROM node
+FROM node:14
 
-WORKDIR /app
+WORKDIR app
 
 COPY package.json .
-COPY package-lock.json .
 
 RUN npm install
 

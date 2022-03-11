@@ -14,11 +14,11 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: npm start
     ports:
       - 3001:3001
     volumes:
       - ./backend:/app/
+      - /app/node_modules
     links:
       - postgres
     depends_on: 
@@ -38,3 +38,4 @@ services:
       - 3000:3000
     volumes:
       - ./frontend:/app/
+      - /app/node_modules
