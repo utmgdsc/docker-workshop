@@ -27,16 +27,17 @@ services:
       PGUSER: postgres
       PGHOST: postgres
       PGDATABASE: postgres
-      PGPASSWORD: password
+      # 🐳Define an environment variable called "PGPASSWORD" that has an value of "password" (remove all quotations after you finish)🐳
       PGPORT: 5432
-  🐳
-  Create a service called "frontend" that is responsible for configs:
-  building and starting container running the react app.
 
-  Hints:
-    1. look inside the frontend directory!
-    2. you can start a react app with the command: npm start
-    3. we want requests on OUR port 3000 to go get mapped INTO the
-      CONTAINER's port 3000 .
-    4. Make sure your indentation matches the indentation of the other services!
-  🐳
+  # 🐳
+  # Create a service called "frontend" that is responsible for configs:
+  # building and starting container running the react app.
+
+  # Hints:
+  #   1. look inside the frontend directory!
+  #   2. you can start a react app with the command: npm start
+  #   3. we want requests on OUR port 3000 to go get mapped INTO the
+  #     CONTAINER's port 3000 .
+  #   4. Make sure your indentation matches the indentation of the other services!
+  # 🐳
